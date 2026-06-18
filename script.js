@@ -1,5 +1,5 @@
 /* ===================================================
-   SPSS BEDARIJA — Interactions
+   Course Bedarija — Interactions
 =================================================== */
 (function () {
   'use strict';
@@ -69,5 +69,16 @@
   /* ---- Current year in footer ---- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---- Dark / light theme toggle ---- */
+  var themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  }
 
 })();
