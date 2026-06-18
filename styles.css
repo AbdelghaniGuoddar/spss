@@ -316,6 +316,7 @@ img { max-width: 100%; display: block; }
 .why-text strong { color: #fff; }
 .why-list { display: grid; gap: 15px; }
 .why-list li { display: flex; gap: 13px; align-items: flex-start; color: #dceaf7; font-size: 1.05rem; }
+.why-li-text { flex: 1; text-align: right; }
 .why-list strong { color: #fff; }
 .check { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; font-weight: 900; font-size: .9rem; color: #04342d; }
 .why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
