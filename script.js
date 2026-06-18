@@ -81,4 +81,33 @@
     });
   }
 
+  /* ---- Lead form -> WhatsApp ---- */
+  var leadForm = document.getElementById('leadForm');
+  if (leadForm) {
+    var WHATSAPP_NUMBER = '212601521671'; // <-- بدّل الرقم هنا إيلا تبدّل
+    leadForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameEl = document.getElementById('leadName');
+      var phoneEl = document.getElementById('leadPhone');
+      var offerEl = document.getElementById('leadOffer');
+
+      var name = (nameEl && nameEl.value || '').trim();
+      var phone = (phoneEl && phoneEl.value || '').trim();
+      var offer = (offerEl && offerEl.value || '').trim();
+
+      // بسيطة: تحقق من تعمير الخانات الأساسية
+      if (!name) { nameEl.focus(); return; }
+      if (!phone) { phoneEl.focus(); return; }
+
+      var msg =
+        'السلام، بغيت نطلب تكوين 👇\n' +
+        '• الاسم: ' + name + '\n' +
+        '• الهاتف: ' + phone + '\n' +
+        '• العرض: ' + offer;
+
+      var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    });
+  }
+
 })();
