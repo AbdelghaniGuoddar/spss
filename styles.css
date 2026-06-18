@@ -137,6 +137,14 @@ img { max-width: 100%; display: block; }
 .logo-text strong { color: var(--blue-600); }
 [data-theme="dark"] .logo-text strong { color: var(--blue-400); }
 
+/* real logo image */
+.logo-img {
+  width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+  background: #fff; padding: 2px; box-shadow: 0 4px 12px rgba(13, 58, 102, .18);
+  flex-shrink: 0;
+}
+.footer-brand .logo-img { width: 52px; height: 52px; }
+
 .nav { display: flex; gap: 28px; }
 .nav a { font-weight: 500; color: var(--ink-soft); font-size: 1rem; position: relative; transition: var(--t); }
 .nav a::after { content: ''; position: absolute; bottom: -6px; right: 0; width: 0; height: 2px; background: var(--blue-500); transition: var(--t); }
