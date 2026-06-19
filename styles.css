@@ -383,7 +383,8 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============ TESTIMONIALS ============ */
-.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
+.tst-hint { text-align: center; color: var(--muted); margin: -18px auto 30px; font-size: .98rem; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; align-items: start; max-width: 940px; margin: 0 auto; }
 .tst-card {
   position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 28px 26px; display: flex; flex-direction: column; gap: 14px; transition: var(--t); overflow: hidden;
@@ -401,6 +402,7 @@ img { max-width: 100%; display: block; }
   width: 46px; height: 46px; border-radius: 50%; background: var(--grad); color: #fff; flex-shrink: 0;
   display: grid; place-items: center; font-weight: 700; font-family: 'Rubik'; font-size: .95rem;
 }
+.tst-avatar svg { width: 22px; height: 22px; }
 .tst-meta { display: flex; flex-direction: column; line-height: 1.4; }
 .tst-meta strong { color: var(--heading); font-size: 1rem; }
 .tst-meta small { color: var(--muted); font-size: .88rem; }
@@ -410,7 +412,20 @@ img { max-width: 100%; display: block; }
 
 /* audio testimonial */
 .tst-audio-head { display: flex; align-items: center; gap: 12px; }
-.tst-audio audio { width: 100%; border-radius: 50px; }
+.tst-audio-quote { font-size: 1.02rem; }
+.tst-audio audio { width: 100%; margin: 2px 0; }
+.tst-transcript { border-top: 1px solid var(--line); padding-top: 12px; }
+.tst-transcript summary {
+  cursor: pointer; color: var(--blue-600); font-weight: 700; font-size: .92rem; list-style: none;
+}
+.tst-transcript summary::-webkit-details-marker { display: none; }
+.tst-transcript summary::before { content: '▾ '; }
+.tst-transcript[open] summary::before { content: '▴ '; }
+[data-theme="dark"] .tst-transcript summary { color: var(--blue-400); }
+.tst-transcript p {
+  margin-top: 10px; color: var(--ink-soft); font-size: .95rem; line-height: 1.9;
+  max-height: 200px; overflow-y: auto; padding-inline-end: 6px;
+}
 .tst-audio-text { color: var(--ink-soft); font-size: .98rem; line-height: 1.8; }
 
 /* ============ AUDIENCE ============ */

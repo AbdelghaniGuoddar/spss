@@ -281,59 +281,64 @@
         <p class="lead">طلبة وباحثون أنجزوا أبحاثهم بثقة بعد متابعة هذا التكوين.</p>
       </div>
 
-      <!-- ملاحظة: النصوص أسفله مؤقتة (placeholder) — ستُستبدل بالشهادات الحقيقية. -->
+      <p class="tst-hint reveal">شهادات صوتية حقيقية لطلبة وباحثين استفادوا من التكوين — اضغط للاستماع.</p>
       <div class="testimonials-grid">
 
-        <!-- ===== نوع 1: شهادة نصية ===== -->
-        <figure class="tst-card reveal">
-          <span class="tst-quote" aria-hidden="true">”</span>
-          <div class="tst-stars" aria-label="5 من 5">★★★★★</div>
-          <blockquote>[هنا يظهر نص شهادة الطالب الحقيقية — استبدله لاحقاً. مثال على المكان الذي ستظهر فيه تجربة الطالب مع التكوين.]</blockquote>
-          <figcaption class="tst-author">
-            <span class="tst-avatar">ع م</span>
-            <span class="tst-meta"><strong>اسم الطالب</strong><small>طالب دكتوراه</small></span>
-          </figcaption>
-        </figure>
-
-        <figure class="tst-card reveal">
-          <span class="tst-quote" aria-hidden="true">”</span>
-          <div class="tst-stars" aria-label="5 من 5">★★★★★</div>
-          <blockquote>[نص شهادة ثانية — يظهر هنا رأي الطالب أو الباحث حول الفائدة التي حصل عليها.]</blockquote>
-          <figcaption class="tst-author">
-            <span class="tst-avatar">س ب</span>
-            <span class="tst-meta"><strong>اسم الطالبة</strong><small>طالبة ماستر</small></span>
-          </figcaption>
-        </figure>
-
-        <figure class="tst-card reveal">
-          <span class="tst-quote" aria-hidden="true">”</span>
-          <div class="tst-stars" aria-label="5 من 5">★★★★★</div>
-          <blockquote>[نص شهادة ثالثة — مكان لتجربة باحث استفاد من تحليل البيانات والذكاء الاصطناعي.]</blockquote>
-          <figcaption class="tst-author">
-            <span class="tst-avatar">ي ل</span>
-            <span class="tst-meta"><strong>اسم الباحث</strong><small>باحث</small></span>
-          </figcaption>
-        </figure>
-
-        <!-- ===== نوع 2: سكرينشوت محادثة (ارفع testimonial-1.png ثم أزل التعليق) =====
-        <figure class="tst-card tst-shot reveal">
-          <img src="testimonial-1.png" alt="شهادة طالب عبر واتساب" loading="lazy" />
-          <figcaption class="tst-author">
-            <span class="tst-meta"><strong>اسم الطالب</strong><small>طالب دكتوراه</small></span>
-          </figcaption>
-        </figure>
-        -->
-
-        <!-- ===== نوع 3: شهادة صوتية (ارفع audio-1.mp3 ثم أزل التعليق) =====
+        <!-- ===== شهادة صوتية 1 ===== -->
         <figure class="tst-card tst-audio reveal">
           <div class="tst-audio-head">
-            <span class="tst-avatar">م ع</span>
-            <span class="tst-meta"><strong>اسم الطالب</strong><small>شهادة صوتية</small></span>
+            <span class="tst-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <span class="tst-meta"><strong>طالبة باحثة — سلك الدكتوراه</strong><small>مستفيدة من دورات SPSS</small></span>
           </div>
-          <audio controls preload="none" src="audio-1.mp3"></audio>
-          <p class="tst-audio-text">[النص المكتوب للشهادة الصوتية يظهر هنا.]</p>
+          <div class="tst-stars" aria-label="5 من 5">★★★★★</div>
+          <blockquote class="tst-audio-quote">«الصبر والـ esprit de partage لي عندها… ما كتبخلش على الـ doctorants والـ masterants بالمعلومة. الله يجازيها بخير.»</blockquote>
+          <audio controls preload="none" src="audio_1.mp3"></audio>
+          <details class="tst-transcript"><summary>اقرأ الشهادة كاملة</summary>
+            <p>صافي أختي خولة، ميرسي بوكو. Oui, je comprends très bien، الله يحسن العوان. الله يعطيها القوة والله يكثر من مثالها، والله زعما vraiment la patience لي عندها والصبر لي عندها، وذاك l'esprit de partage، وما كتبخلشي على les doctorants وعلى les masterants بالمعلومة. زعما الله يجعل ربي هو لي يجازيها، سمعتي؟</p>
+          </details>
         </figure>
-        -->
+
+        <!-- ===== شهادة صوتية 2 ===== -->
+        <figure class="tst-card tst-audio reveal">
+          <div class="tst-audio-head">
+            <span class="tst-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <span class="tst-meta"><strong>طالب باحث — سلك الدكتوراه</strong><small>مستفيد من دورات SPSS</small></span>
+          </div>
+          <div class="tst-stars" aria-label="5 من 5">★★★★★</div>
+          <blockquote class="tst-audio-quote">«الـ formation كانت top top… موضوع SPSS وَالـ statistique كيشكل عائق للطلبة، ونتي بسّطتي المفاهيم بشكل رائع. جزاك الله خيراً.»</blockquote>
+          <audio controls preload="none" src="audio_3.mp3"></audio>
+          <details class="tst-transcript"><summary>اقرأ الشهادة كاملة</summary>
+            <p>السلام عليكم ورحمة الله تعالى وبركاته، الأستاذة حنان تبارك الله عليك ونتمنى من الله تكوني بخير وفي أحسن الأحوال وكذلك الأخوات نتمنى من الله تكونوا مزيانين. أولا يا أستاذة نبغي نشكرك جزيل الشكر على la formation اللي الصراحة كانت top top، مهما حاولت نشكر ما غاديش نوفي الحق نتاعك. هاد الموضوع ديال SPSS وديال statistique كيشكل واحد العائق بالنسبة للطلبة، لأن ما بقاتش غير تكون عندنا النتيجة، بقات شنو نديرو بالنتيجة؛ عندك كاع les données كاينين ولكن شنو غادي دير بيهم، هنا فين كتكمن الصعوبة. ونتي يا أستاذة درتي واحد الخدمة تبارك الله، وجزاك الله عنا خير الجزاء، بسّطتي المفاهيم بواحد الشكل ما شاء الله. وشكرا جزيلا، ونتمنى التوفيق لخواتاتي اللي شاركوا معايا في هاد الدورة. تبارك الله عليكم وعواشر مبروكة، السلام عليكم.</p>
+          </details>
+        </figure>
+
+        <!-- ===== شهادة صوتية 3 ===== -->
+        <figure class="tst-card tst-audio reveal">
+          <div class="tst-audio-head">
+            <span class="tst-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <span class="tst-meta"><strong>طالبة باحثة — سلك الماجستير</strong><small>مستفيدة من دورات SPSS</small></span>
+          </div>
+          <div class="tst-stars" aria-label="5 من 5">★★★★★</div>
+          <blockquote class="tst-audio-quote">«أفضل دورة تكوينية درتها في SPSS… وباش تكون عن بُعد وبهاد الجودة، ماشي ساهلة. كفاءة عالية في الـ domaine ديالك، الله يوفقك.»</blockquote>
+          <audio controls preload="none" src="audio_4.mp3"></audio>
+          <details class="tst-transcript"><summary>اقرأ الشهادة كاملة</summary>
+            <p>مساء النور أستاذة حنان. بصدق والله شهادة من القلب. شخصياً شحال من دورة تكوينية كنحضرها عن بُعد وكنتزرف، ولكن vraiment شهادة لله، أفضل دورة تكوينية درتها، وفي SPSS. وباش تكون دورة في SPSS عن بُعد وتكون بهاد الجودة، ماشي شي حاجة ساهلة. أنا قرينا SPSS في la fac ودرت دورة العام اللي فات وما قدرتش نستوعب بزاف، وأقسم بالله حتى قريتها عندك ما شاء الله عليك، كفاءة عالية في الـ domaine ديالك، الله يوفقك في المسار ديالك. يشرفني نتلاقاو إن شاء الله. كانت فرصة جميلة نتلاقى معكم في هاد الدورة، وشكرا مرة أخرى. ما شاء الله عليك، متمكنة في الـ domaine ديالك، الله يوفقك.</p>
+          </details>
+        </figure>
+
+        <!-- ===== شهادة صوتية 4 ===== -->
+        <figure class="tst-card tst-audio reveal">
+          <div class="tst-audio-head">
+            <span class="tst-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <span class="tst-meta"><strong>طالب باحث — سلك الدكتوراه</strong><small>مستفيد من دورات SPSS</small></span>
+          </div>
+          <div class="tst-stars" aria-label="5 من 5">★★★★★</div>
+          <blockquote class="tst-audio-quote">«الحصص كانت مفيدة للغاية، والطريقة ديال الشرح خلاتني نستوعب ونفهم… وما ندمتش عليها. الله يجازيك بخير.»</blockquote>
+          <audio controls preload="none" src="audio_5.mp3"></audio>
+          <details class="tst-transcript"><summary>اقرأ الشهادة كاملة</summary>
+            <p>أستاذة حنان، في الحقيقة نتي كتسجلي وأنا بغيت غير نعبّر على واحد المسألة: الله يجازيك بخير، الحصص ديالك كانت مفيدة للغاية، والطريقة ديال الشرح خلّاتني الحمد لله استوعبت وفهمت. كنت دراية بـ SPSS في master، ولكن الحصص اللي دوّزنا في التكوين كانت رائعة ومفيدة للغاية وما ندمتش عليها. والله يجازيك بخير في هاد الشهر الكريم، الله يبارك فيك وييسر لك أمورك ويحفظ لك الأسرة ديالك.</p>
+          </details>
+        </figure>
 
       </div>
     </div>
