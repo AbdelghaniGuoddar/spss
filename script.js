@@ -110,4 +110,33 @@
     });
   }
 
+  /* ---- Screenshot lightbox ---- */
+  var lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+    var lightboxImg = document.getElementById('lightboxImg');
+    var lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src) {
+      lightboxImg.setAttribute('src', src);
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.setAttribute('src', '');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.tst-shot-thumb').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openLightbox(btn.getAttribute('data-full'));
+      });
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+  }
+
 })();
