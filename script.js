@@ -172,4 +172,27 @@
     });
   }
 
+  /* ---- Offers floating CTA (show on scroll, hide on pricing) ---- */
+  var offersFloat = document.getElementById('offersFloat');
+  if (offersFloat) {
+    var pricingSec = document.getElementById('pricing');
+    var pricingVisible = false;
+
+    function updateOffersFloat() {
+      var scrolledEnough = window.scrollY > 300;
+      if (scrolledEnough && !pricingVisible) offersFloat.classList.add('show');
+      else offersFloat.classList.remove('show');
+    }
+
+    if ('IntersectionObserver' in window && pricingSec) {
+      new IntersectionObserver(function (entries) {
+        pricingVisible = entries[0].isIntersecting;
+        updateOffersFloat();
+      }, { threshold: 0.12 }).observe(pricingSec);
+    }
+
+    window.addEventListener('scroll', updateOffersFloat, { passive: true });
+    updateOffersFloat();
+  }
+
 })();

@@ -548,6 +548,19 @@ img { max-width: 100%; display: block; }
 .whatsapp-float:hover { transform: scale(1.1); background: var(--wa-d); }
 @keyframes floatPulse { 0%,100% { box-shadow: 0 10px 30px rgba(37,211,102,.5), 0 0 0 0 rgba(37,211,102,.4); } 50% { box-shadow: 0 10px 30px rgba(37,211,102,.5), 0 0 0 14px rgba(37,211,102,0); } }
 
+/* ============ OFFERS FLOAT (Sticky CTA) ============ */
+.offers-float {
+  position: fixed; left: 20px; bottom: 24px; z-index: 89;
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--grad); color: #fff; font-family: 'Tajawal', sans-serif; font-weight: 800; font-size: 1rem;
+  padding: 13px 22px; border-radius: 50px; box-shadow: 0 10px 30px rgba(21,101,192,.45);
+  opacity: 0; pointer-events: none; transform: translateY(120px); white-space: nowrap;
+  transition: transform .4s cubic-bezier(.4,0,.2,1), opacity .3s ease, box-shadow .25s ease;
+}
+.offers-float.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.offers-float:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(21,101,192,.55); }
+.offers-float svg { width: 19px; height: 19px; flex-shrink: 0; }
+
 /* ============ REVEAL ANIMATION ============ */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }
@@ -587,6 +600,7 @@ img { max-width: 100%; display: block; }
   .why-cards { grid-template-columns: 1fr 1fr; }
   .cta-text, .lead-form { padding: 36px 26px; }
   .hero-cta .btn { width: 100%; }
+  .offers-float { left: 14px; bottom: 18px; padding: 11px 16px; font-size: .9rem; }
 }
 
 @media (max-width: 420px) {
