@@ -252,6 +252,7 @@ img { max-width: 100%; display: block; }
 .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--heading); }
 .lead { margin-top: 16px; font-size: 1.12rem; color: var(--ink-soft); }
 .lead strong { color: var(--blue-700); }
+.section-cta { text-align: center; margin-top: 44px; }
 
 /* ============ PROBLEM ============ */
 .problem { background: var(--bg-soft); }
