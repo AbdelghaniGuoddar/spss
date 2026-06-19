@@ -428,21 +428,42 @@ img { max-width: 100%; display: block; }
 }
 .tst-audio-text { color: var(--ink-soft); font-size: .98rem; line-height: 1.8; }
 
-/* screenshot gallery */
-.tst-gallery-wrap { max-width: 940px; margin: 42px auto 0; }
+/* screenshot carousel */
+.tst-carousel-wrap { max-width: 1080px; margin: 42px auto 0; }
 .tst-sub { text-align: center; color: var(--heading); font-size: 1.3rem; margin-bottom: 22px; }
-.tst-gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-.tst-shot-thumb {
-  padding: 0; margin: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-  cursor: pointer; background: var(--surface); aspect-ratio: 9 / 16; transition: var(--t); position: relative;
+.tst-carousel { position: relative; }
+.tst-track {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding: 8px 4px 18px; -webkit-overflow-scrolling: touch; cursor: grab;
+  scrollbar-width: none; -ms-overflow-style: none;
 }
-.tst-shot-thumb::after {
+.tst-track::-webkit-scrollbar { display: none; }
+.tst-track.dragging { cursor: grabbing; scroll-behavior: auto; scroll-snap-type: none; }
+.tst-slide {
+  flex: 0 0 auto; width: 234px; aspect-ratio: 9 / 16; scroll-snap-align: center; position: relative;
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden; padding: 0; margin: 0;
+  background: var(--surface); cursor: pointer; transition: transform .25s ease, box-shadow .25s ease;
+}
+.tst-slide img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; pointer-events: none; }
+.tst-slide::after {
   content: '🔍'; position: absolute; inset: 0; display: grid; place-items: center;
-  background: rgba(10, 37, 64, 0.0); font-size: 1.6rem; opacity: 0; transition: var(--t);
+  background: rgba(10, 37, 64, 0); font-size: 1.6rem; opacity: 0; transition: var(--t);
 }
-.tst-shot-thumb:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--blue-400); }
-.tst-shot-thumb:hover::after { background: rgba(10, 37, 64, 0.35); opacity: 1; }
-.tst-shot-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.tst-slide:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--blue-400); }
+.tst-slide:hover::after { background: rgba(10, 37, 64, 0.35); opacity: 1; }
+
+.carousel-nav {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
+  width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--surface); color: var(--blue-600); display: grid; place-items: center;
+  cursor: pointer; box-shadow: var(--shadow); transition: var(--t);
+}
+.carousel-nav svg { width: 22px; height: 22px; }
+.carousel-nav:hover { background: var(--blue-600); color: #fff; border-color: var(--blue-600); transform: translateY(-50%) scale(1.08); }
+.carousel-nav.prev { inset-inline-start: -16px; }
+.carousel-nav.next { inset-inline-end: -16px; }
+[data-theme="dark"] .carousel-nav { color: var(--blue-400); }
+[data-theme="dark"] .carousel-nav:hover { color: #fff; }
 
 /* lightbox */
 .lightbox {
@@ -538,7 +559,8 @@ img { max-width: 100%; display: block; }
   .why-inner { grid-template-columns: 1fr; gap: 36px; }
   .program-grid, .includes-grid { grid-template-columns: repeat(2, 1fr); }
   .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-  .tst-gallery { grid-template-columns: repeat(3, 1fr); }
+  .carousel-nav.prev { inset-inline-start: 2px; }
+  .carousel-nav.next { inset-inline-end: 2px; }
   .pricing-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
   .price-card.featured { transform: none; }
   .price-card.featured:hover { transform: translateY(-6px); }
@@ -559,7 +581,7 @@ img { max-width: 100%; display: block; }
   .hero { padding: 120px 0 64px; }
   .problem-grid, .program-grid, .includes-grid, .audience-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
-  .tst-gallery { grid-template-columns: repeat(2, 1fr); }
+  .tst-slide { width: 78vw; max-width: 290px; }
   .trust-grid { grid-template-columns: 1fr 1fr; gap: 22px 12px; }
   .trust-item:nth-child(2) { border: 0; }
   .why-cards { grid-template-columns: 1fr 1fr; }

@@ -110,33 +110,66 @@
     });
   }
 
-  /* ---- Screenshot lightbox ---- */
+  /* ---- Screenshot carousel + lightbox ---- */
   var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+
+  function openLightbox(src) {
+    if (!lightbox) return;
+    lightboxImg.setAttribute('src', src);
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.setAttribute('src', '');
+    document.body.style.overflow = '';
+  }
+
   if (lightbox) {
-    var lightboxImg = document.getElementById('lightboxImg');
     var lightboxClose = document.getElementById('lightboxClose');
-
-    function openLightbox(src) {
-      lightboxImg.setAttribute('src', src);
-      lightbox.classList.add('open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightboxImg.setAttribute('src', '');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.tst-shot-thumb').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        openLightbox(btn.getAttribute('data-full'));
-      });
-    });
     lightboxClose.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+  }
+
+  var track = document.getElementById('tstTrack');
+  if (track) {
+    function step() {
+      var slide = track.querySelector('.tst-slide');
+      var gap = 16;
+      return slide ? (slide.getBoundingClientRect().width + gap) : 250;
+    }
+    // arrows (RTL: scrollLeft goes negative toward later items)
+    var prevBtn = document.getElementById('tstPrev');
+    var nextBtn = document.getElementById('tstNext');
+    if (nextBtn) nextBtn.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if (prevBtn) prevBtn.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+
+    // drag to scroll (mouse)
+    var isDown = false, startX = 0, startScroll = 0, moved = false;
+    track.addEventListener('mousedown', function (e) {
+      isDown = true; moved = false; startX = e.pageX; startScroll = track.scrollLeft;
+      track.classList.add('dragging');
+    });
+    window.addEventListener('mouseup', function () { isDown = false; track.classList.remove('dragging'); });
+    window.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      var walk = e.pageX - startX;
+      if (Math.abs(walk) > 5) moved = true;
+      track.scrollLeft = startScroll - walk;
+    });
+
+    // click slide -> open lightbox (unless it was a drag)
+    track.querySelectorAll('.tst-slide').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        if (moved) { e.preventDefault(); return; }
+        openLightbox(btn.getAttribute('data-full'));
+      });
+    });
   }
 
 })();
