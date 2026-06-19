@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poster — SPSS Bedarija</title>
+  <!--
+    ============================================================
+    بوستر إعلاني — SPSS Bedarija (1080 x 1350)
+    كيفاش تصدّرو كصورة PNG (مجاناً، بلا أداة):
+    1) حل هاد الصفحة فـ Chrome.
+    2) دير F12 (DevTools) -> Ctrl+Shift+M (Device toolbar).
+    3) فالأعلى حط المقاس: 1080 x 1350 (و DPR = 2 لجودة أعلى).
+    4) كليكي على ⋮ (3 نقط) -> "Capture screenshot".
+    => غادي تنزل ليك صورة PNG نظيفة بالمقاس المضبوط.
+    ============================================================
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #2b3440; display: grid; place-items: center; min-height: 100vh; padding: 20px; font-family: 'Tajawal', sans-serif; }
+
+    .poster {
+      position: relative; width: 1080px; height: 1350px; overflow: hidden;
+      background: linear-gradient(160deg, #0a2540 0%, #114a85 55%, #0d3a66 100%);
+      color: #fff; padding: 70px 64px; display: flex; flex-direction: column;
+    }
+    /* decorative shapes */
+    .blob { position: absolute; border-radius: 50%; filter: blur(10px); opacity: .5; pointer-events: none; }
+    .blob.a { width: 520px; height: 520px; background: radial-gradient(circle, rgba(0,194,168,.45), transparent 65%); top: -160px; left: -140px; }
+    .blob.b { width: 620px; height: 620px; background: radial-gradient(circle, rgba(61,151,232,.5), transparent 65%); bottom: -220px; right: -180px; }
+    .grid-bg {
+      position: absolute; inset: 0; opacity: .12; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+      -webkit-mask-image: radial-gradient(circle at 70% 20%, #000, transparent 75%);
+      mask-image: radial-gradient(circle at 70% 20%, #000, transparent 75%);
+    }
+    .poster > * { position: relative; z-index: 2; }
+
+    /* top bar */
+    .top { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .brand img { width: 76px; height: 76px; border-radius: 50%; background: #fff; padding: 3px; box-shadow: 0 8px 22px rgba(0,0,0,.3); }
+    .brand .bt { font-family: 'Rubik'; font-weight: 800; font-size: 30px; line-height: 1; }
+    .brand .bt span { color: #5fb0f0; }
+    .brand .bs { font-size: 18px; color: #aac4e0; font-weight: 500; margin-top: 4px; }
+    .flag { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); padding: 10px 18px; border-radius: 50px; font-weight: 700; font-size: 20px; }
+
+    /* discount badge */
+    .discount {
+      position: absolute; top: 150px; left: 64px; z-index: 5;
+      width: 168px; height: 168px; border-radius: 50%;
+      background: linear-gradient(135deg, #ff8c00, #ff5e3a); color: #fff;
+      display: grid; place-items: center; text-align: center; transform: rotate(-12deg);
+      box-shadow: 0 14px 36px rgba(255,94,58,.5); border: 4px solid rgba(255,255,255,.35);
+    }
+    .discount b { font-family: 'Rubik'; font-weight: 900; font-size: 56px; line-height: .9; }
+    .discount span { font-size: 19px; font-weight: 700; display: block; margin-top: 2px; }
+
+    /* hero */
+    .hero { margin-top: 86px; }
+    .eyebrow {
+      display: inline-block; background: rgba(0,194,168,.18); border: 1px solid rgba(0,194,168,.5);
+      color: #6ff0db; font-weight: 800; font-size: 22px; padding: 10px 22px; border-radius: 50px; margin-bottom: 26px;
+    }
+    .title { font-family: 'Rubik'; font-weight: 900; font-size: 132px; line-height: .98; letter-spacing: -1px; }
+    .title .grad { background: linear-gradient(90deg, #5fb0f0, #6ff0db); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { font-size: 33px; color: #d7e6f5; font-weight: 500; margin-top: 22px; line-height: 1.5; max-width: 900px; }
+    .subtitle b { color: #fff; font-weight: 800; }
+
+    /* features */
+    .feats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 44px; }
+    .feat {
+      display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16); border-radius: 18px; padding: 20px 22px; backdrop-filter: blur(4px);
+    }
+    .feat .ic { width: 52px; height: 52px; border-radius: 13px; background: rgba(95,176,240,.22); display: grid; place-items: center; flex-shrink: 0; color: #8fc8ff; }
+    .feat .ic svg { width: 28px; height: 28px; }
+    .feat .tx { font-size: 26px; font-weight: 700; }
+    .feat .tx b { color: #6ff0db; }
+    .feat.free .ic { background: rgba(0,194,168,.25); color: #6ff0db; }
+
+    /* bottom */
+    .bottom { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-top: 40px; }
+    .price-box { }
+    .price-box .pl { font-size: 24px; color: #aac4e0; font-weight: 600; }
+    .price-box .pv { font-family: 'Rubik'; font-weight: 900; font-size: 92px; line-height: 1; color: #fff; }
+    .price-box .pv small { font-size: 34px; color: #6ff0db; }
+    .price-box .po { font-size: 24px; color: #9fb6cc; }
+    .price-box .po s { color: #ff9b8a; }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 14px; background: #25d366; color: #073; 
+      padding: 24px 34px; border-radius: 50px; box-shadow: 0 14px 34px rgba(37,211,102,.5);
+    }
+    .cta svg { width: 40px; height: 40px; color: #fff; }
+    .cta .ct { color: #042; }
+    .cta .ct .c1 { font-size: 20px; font-weight: 700; line-height: 1; }
+    .cta .ct .c2 { font-family: 'Rubik'; font-weight: 900; font-size: 34px; line-height: 1.1; color: #053; }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <div class="blob a"></div>
+    <div class="blob b"></div>
+    <div class="grid-bg"></div>
+
+    <!-- discount -->
+    <div class="discount"><div><b>30%</b><span>تخفيض</span></div></div>
+
+    <!-- top -->
+    <div class="top">
+      <div class="brand">
+        <img src="logo.png" alt="Course Bedarija" />
+        <div>
+          <div class="bt">Course <span>Bedarija</span></div>
+          <div class="bs">Your Data Analytics Companion</div>
+        </div>
+      </div>
+      <div class="flag">شرح بالدارجة 🇲🇦</div>
+    </div>
+
+    <!-- hero -->
+    <div class="hero">
+      <span class="eyebrow">تكوين أكاديمي مسجّل • 24/7</span>
+      <div class="title"><span class="grad">SPSS</span><br/>Bedarija</div>
+      <div class="subtitle">من فكرة البحث إلى <b>نتائج موثوقة</b>: المنهجية، الاستبيان، تحليل البيانات بـ SPSS، والذكاء الاصطناعي للبحث العلمي.</div>
+    </div>
+
+    <!-- features -->
+    <div class="feats">
+      <div class="feat">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+        <span class="tx"><b>+14</b> ساعة فيديو</span>
+      </div>
+      <div class="feat">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20"/><path d="M21 3v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3"/><path d="m7 21 5-5 5 5"/></svg></span>
+        <span class="tx"><b>+170</b> شريحة شرح</span>
+      </div>
+      <div class="feat free">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+        <span class="tx">برنامج SPSS <b>مجاناً</b></span>
+      </div>
+      <div class="feat">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+        <span class="tx">شهادة في الأخير</span>
+      </div>
+      <div class="feat">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+        <span class="tx">قواعد بيانات للتدريب</span>
+      </div>
+      <div class="feat">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></span>
+        <span class="tx">دعم عبر واتساب</span>
+      </div>
+    </div>
+
+    <!-- bottom -->
+    <div class="bottom">
+      <div class="price-box">
+        <div class="pl">ابتداءً من</div>
+        <div class="pv">244 <small>درهم</small></div>
+        <div class="po">3 عروض • البرنامج الكامل <s>799</s> 559 درهم</div>
+      </div>
+      <div class="cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <div class="ct"><div class="c1">راسلنا الآن على واتساب</div><div class="c2">06 01 52 16 71</div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
