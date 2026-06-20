@@ -106,6 +106,7 @@
         '• العرض: ' + offer;
 
       var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
       window.open(url, '_blank');
     });
   }
@@ -222,5 +223,12 @@
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadHeroVideo(); }
     });
   }
+
+  /* ---- Meta Pixel: fire "Lead" on every WhatsApp contact click ---- */
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+    });
+  });
 
 })();
