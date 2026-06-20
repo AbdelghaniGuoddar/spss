@@ -195,4 +195,32 @@
     updateOffersFloat();
   }
 
+  /* ---- Hero video: lazy-load YouTube only on click (keeps LP fast) ---- */
+  var heroVideo = document.getElementById('heroVideo');
+  if (heroVideo) {
+    var ytId = heroVideo.getAttribute('data-yt');
+    // show the real video thumbnail as the facade background (if id provided)
+    if (ytId) {
+      heroVideo.style.backgroundImage = "url('https://img.youtube.com/vi/" + ytId + "/hqdefault.jpg')";
+      heroVideo.style.backgroundSize = 'cover';
+      heroVideo.style.backgroundPosition = 'center';
+    }
+    function loadHeroVideo() {
+      var id = heroVideo.getAttribute('data-yt');
+      if (!id) return; // مازال ما تحطّش معرّف الفيديو
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      iframe.title = 'فيديو تعريفي بالتكوين';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      heroVideo.innerHTML = '';
+      heroVideo.appendChild(iframe);
+    }
+    heroVideo.addEventListener('click', loadHeroVideo);
+    heroVideo.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadHeroVideo(); }
+    });
+  }
+
 })();
