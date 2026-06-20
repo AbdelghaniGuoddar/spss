@@ -106,7 +106,7 @@
         '• العرض: ' + offer;
 
       var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
-      if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: offer });
       window.open(url, '_blank');
     });
   }
@@ -178,6 +178,7 @@
   if (offersFloat) {
     var pricingSec = document.getElementById('pricing');
     var pricingVisible = false;
+    var pricingSeen = false;
 
     function updateOffersFloat() {
       var scrolledEnough = window.scrollY > 300;
@@ -188,6 +189,10 @@
     if ('IntersectionObserver' in window && pricingSec) {
       new IntersectionObserver(function (entries) {
         pricingVisible = entries[0].isIntersecting;
+        if (pricingVisible && !pricingSeen) {
+          pricingSeen = true;
+          if (typeof window.fbq === 'function') window.fbq('trackCustom', 'ViewPricing');
+        }
         updateOffersFloat();
       }, { threshold: 0.12 }).observe(pricingSec);
     }
@@ -217,6 +222,7 @@
       iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
       heroVideo.innerHTML = '';
       heroVideo.appendChild(iframe);
+      if (typeof window.fbq === 'function') window.fbq('trackCustom', 'VideoPlay');
     }
     heroVideo.addEventListener('click', loadHeroVideo);
     heroVideo.addEventListener('keydown', function (e) {
@@ -224,10 +230,19 @@
     });
   }
 
-  /* ---- Meta Pixel: fire "Lead" on every WhatsApp contact click ---- */
+  /* ---- Meta Pixel: detailed event tracking ---- */
   document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {
     a.addEventListener('click', function () {
-      if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+      if (typeof window.fbq !== 'function') return;
+      if (a.classList.contains('price-btn')) {
+        window.fbq('track', 'InitiateCheckout', {
+          content_name: a.getAttribute('data-offer') || '',
+          value: parseFloat(a.getAttribute('data-value')) || 0,
+          currency: 'MAD'
+        });
+      } else {
+        window.fbq('track', 'Contact');
+      }
     });
   });
 
