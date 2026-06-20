@@ -231,6 +231,11 @@ img { max-width: 100%; display: block; }
 .avatars span:first-child { margin: 0; }
 .hero-card-foot p { font-size: .92rem; color: var(--ink-soft); }
 .hero-card-foot strong { color: var(--blue-700); }
+.hero-rating { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+.hero-rating .stars { color: #f5b301; letter-spacing: 2px; font-size: 1.05rem; }
+.hero-rating .rating-meta { display: flex; flex-direction: column; line-height: 1.15; }
+.hero-rating .rating-meta strong { font-family: 'Rubik'; font-weight: 800; color: var(--heading); font-size: 1.15rem; }
+.hero-rating .rating-meta small { color: var(--muted); font-size: .78rem; }
 
 /* ============ TRUST STRIP ============ */
 .trust-strip { background: var(--blue-900); color: #fff; padding: 26px 0; }
