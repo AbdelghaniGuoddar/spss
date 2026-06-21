@@ -499,6 +499,12 @@ img { max-width: 100%; display: block; }
 .founder-creds { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
 .founder-creds li { background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-100); font-size: .82rem; font-weight: 600; padding: 5px 12px; border-radius: 50px; }
 [data-theme="dark"] .founder-creds li { color: var(--blue-400); }
+.founder-linkedin {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; color: #0a66c2;
+  font-weight: 700; font-size: .95rem; border: 1.5px solid var(--line); padding: 9px 20px; border-radius: 50px; transition: var(--t);
+}
+.founder-linkedin:hover { background: #0a66c2; color: #fff; border-color: #0a66c2; transform: translateY(-2px); }
+.founder-linkedin svg { width: 18px; height: 18px; }
 .founder-quote {
   font-size: 1.15rem; line-height: 1.9; color: var(--ink-soft);
   border-inline-start: 4px solid var(--blue-500); padding-inline-start: 20px; margin-bottom: 26px;
