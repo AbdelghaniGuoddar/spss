@@ -496,6 +496,9 @@ img { max-width: 100%; display: block; }
 .founder-card h3 { font-size: 1.5rem; color: var(--heading); }
 .founder-role { color: var(--blue-600); font-weight: 700; font-size: .98rem; }
 [data-theme="dark"] .founder-role { color: var(--blue-400); }
+.founder-creds { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.founder-creds li { background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-100); font-size: .82rem; font-weight: 600; padding: 5px 12px; border-radius: 50px; }
+[data-theme="dark"] .founder-creds li { color: var(--blue-400); }
 .founder-quote {
   font-size: 1.15rem; line-height: 1.9; color: var(--ink-soft);
   border-inline-start: 4px solid var(--blue-500); padding-inline-start: 20px; margin-bottom: 26px;
