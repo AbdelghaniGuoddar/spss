@@ -484,6 +484,31 @@ img { max-width: 100%; display: block; }
 }
 .lightbox-close:hover { background: rgba(255,255,255,.32); transform: scale(1.05); }
 
+/* ============ ABOUT ============ */
+.about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: center; max-width: 980px; margin: 0 auto; }
+.founder-card { text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 26px; box-shadow: var(--shadow); }
+.founder-photo {
+  position: relative; width: 150px; height: 150px; margin: 0 auto 18px; border-radius: 50%; overflow: hidden;
+  background: var(--grad); display: grid; place-items: center; box-shadow: 0 10px 26px rgba(21,101,192,.35);
+}
+.founder-initials { font-family: 'Rubik'; font-weight: 900; font-size: 3rem; color: #fff; }
+.founder-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.founder-card h3 { font-size: 1.5rem; color: var(--heading); }
+.founder-role { color: var(--blue-600); font-weight: 700; font-size: .98rem; }
+[data-theme="dark"] .founder-role { color: var(--blue-400); }
+.founder-quote {
+  font-size: 1.15rem; line-height: 1.9; color: var(--ink-soft);
+  border-inline-start: 4px solid var(--blue-500); padding-inline-start: 20px; margin-bottom: 26px;
+}
+.founder-quote strong { color: var(--blue-700); }
+[data-theme="dark"] .founder-quote strong { color: var(--blue-400); }
+.about-points { display: grid; gap: 18px; }
+.about-point { display: flex; gap: 14px; align-items: flex-start; }
+.about-point .ic { flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; background: var(--blue-50); color: var(--icon); display: grid; place-items: center; border: 1px solid var(--line); }
+.about-point .ic svg { width: 24px; height: 24px; }
+.about-point h4 { color: var(--heading); font-size: 1.1rem; margin-bottom: 2px; }
+.about-point p { color: var(--ink-soft); font-size: .98rem; }
+
 /* ============ AUDIENCE ============ */
 .audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .aud-card {
@@ -584,6 +609,8 @@ img { max-width: 100%; display: block; }
   .price-card.featured { transform: none; }
   .price-card.featured:hover { transform: translateY(-6px); }
   .audience-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 28px; }
+  .founder-card { max-width: 340px; margin: 0 auto; }
   .cta-box { grid-template-columns: 1fr; }
 }
 
