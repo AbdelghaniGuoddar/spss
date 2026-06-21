@@ -246,4 +246,26 @@
     });
   });
 
+  /* ---- Countdown timer (real deadline) ---- */
+  var cd = document.getElementById('countdown');
+  if (cd) {
+    var endTime = new Date(cd.getAttribute('data-end')).getTime();
+    var pad = function (v) { return (v < 10 ? '0' : '') + v; };
+    var setCd = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = pad(v); };
+    var tick = function () {
+      var diff = endTime - Date.now();
+      if (diff <= 0) {
+        cd.innerHTML = '<span class="cd-ended">انتهى العرض الخاص — رجعات الأثمنة للعادي</span>';
+        clearInterval(cdTimer);
+        return;
+      }
+      setCd('cd-days', Math.floor(diff / 86400000));
+      setCd('cd-hours', Math.floor((diff % 86400000) / 3600000));
+      setCd('cd-mins', Math.floor((diff % 3600000) / 60000));
+      setCd('cd-secs', Math.floor((diff % 60000) / 1000));
+    };
+    tick();
+    var cdTimer = setInterval(tick, 1000);
+  }
+
 })();

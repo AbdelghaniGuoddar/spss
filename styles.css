@@ -378,11 +378,12 @@ img { max-width: 100%; display: block; }
 
 /* offer banner */
 .offer-banner {
-  display: flex; align-items: center; gap: 14px; justify-content: center;
-  max-width: 760px; margin: 0 auto 40px; padding: 16px 26px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px; justify-content: center;
+  max-width: 640px; margin: 0 auto 40px; padding: 22px 28px;
   background: linear-gradient(135deg, #fff6e6, var(--surface));
-  border: 1.5px solid #ffd98a; border-radius: 50px; text-align: center;
+  border: 1.5px solid #ffd98a; border-radius: 22px; text-align: center;
 }
+.offer-line { display: flex; align-items: center; gap: 12px; justify-content: center; }
 [data-theme="dark"] .offer-banner { background: linear-gradient(135deg, #2a210e, var(--surface)); border-color: #6b4f1a; }
 .offer-banner p { color: #8a5a00; font-size: 1.05rem; }
 .offer-banner strong { color: #b54708; }
@@ -393,6 +394,15 @@ img { max-width: 100%; display: block; }
   display: grid; place-items: center;
 }
 .offer-ic svg { width: 22px; height: 22px; }
+/* countdown */
+.countdown { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.cd-box { background: var(--surface); border: 1px solid #ffd98a; border-radius: 12px; padding: 9px 0; width: 72px; }
+.cd-box span { display: block; font-family: 'Rubik'; font-weight: 900; font-size: 1.7rem; color: #b54708; line-height: 1.1; }
+.cd-box small { color: var(--muted); font-size: .78rem; }
+.cd-ended { color: #b54708; font-weight: 800; font-size: 1.05rem; }
+[data-theme="dark"] .cd-box { border-color: #6b4f1a; }
+[data-theme="dark"] .cd-box span { color: #ffb86b; }
+[data-theme="dark"] .cd-ended { color: #ffb86b; }
 /* hours pill */
 .price-hours {
   display: inline-block; align-self: flex-start; background: var(--blue-100); color: var(--blue-700);

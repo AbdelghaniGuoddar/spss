@@ -486,10 +486,19 @@
       </div>
 
       <div class="offer-banner reveal">
-        <span class="offer-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
-        </span>
-        <p><strong>عرض خاص — تخفيض 30%</strong> على التكوينات الثلاثة لفترة محدودة.</p>
+        <p class="offer-line">
+          <span class="offer-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+          </span>
+          <span><strong>عرض خاص — تخفيض 30%</strong> — الأثمنة كترجع للعادي بعد انتهاء العدّاد:</span>
+        </p>
+        <!-- ====== بدّل data-end بالتاريخ الحقيقي لنهاية العرض (صيغة: السنة-الشهر-اليومThh:mm:ss) ====== -->
+        <div class="countdown" id="countdown" data-end="2026-06-30T23:59:59">
+          <div class="cd-box"><span id="cd-days">00</span><small>يوم</small></div>
+          <div class="cd-box"><span id="cd-hours">00</span><small>ساعة</small></div>
+          <div class="cd-box"><span id="cd-mins">00</span><small>دقيقة</small></div>
+          <div class="cd-box"><span id="cd-secs">00</span><small>ثانية</small></div>
+        </div>
       </div>
 
       <div class="pricing-grid">
