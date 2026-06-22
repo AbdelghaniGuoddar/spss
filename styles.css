@@ -567,6 +567,8 @@ img { max-width: 100%; display: block; }
 }
 .founder-initials { font-family: 'Rubik'; font-weight: 900; font-size: 3rem; color: #fff; }
 .founder-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.founder-photo.is-logo { background: #fff; }
+.founder-photo.is-logo img { object-fit: contain; padding: 24px; }
 .founder-card h3 { font-size: 1.5rem; color: var(--heading); }
 .founder-role { color: var(--blue-600); font-weight: 700; font-size: .98rem; }
 [data-theme="dark"] .founder-role { color: var(--blue-400); }
