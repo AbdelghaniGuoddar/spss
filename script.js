@@ -268,8 +268,31 @@
     var cdTimer = setInterval(tick, 1000);
   }
 
-  /* ---- Touch / click glow ripple ---- */
+  /* ---- Touch / click glow ripple (+ subtle water-drop sound) ---- */
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ENABLE_TOUCH_SOUND = true; // بدّلها false باش تطفّي الصوت
+  var audioCtx = null, lastSound = 0;
+  function playDrop() {
+    if (!ENABLE_TOUCH_SOUND) return;
+    var now = Date.now();
+    if (now - lastSound < 350) return; // throttle: ما يتكررش بسرعة
+    lastSound = now;
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      var t = audioCtx.currentTime;
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(620, t);
+      osc.frequency.exponentialRampToValueAtTime(900, t + 0.07);
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(0.10, t + 0.012); // صوت خفيف
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.3); // تلاشي سريع
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start(t); osc.stop(t + 0.32);
+    } catch (e) {}
+  }
   if (!reduceMotion) {
     document.addEventListener('pointerdown', function (e) {
       var g = document.createElement('div');
@@ -278,6 +301,7 @@
       g.style.top = e.clientY + 'px';
       document.body.appendChild(g);
       setTimeout(function () { g.remove(); }, 950);
+      playDrop();
     }, { passive: true });
   }
 
