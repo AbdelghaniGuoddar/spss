@@ -271,26 +271,35 @@
   /* ---- Touch / click glow ripple (+ subtle water-drop sound) ---- */
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ENABLE_TOUCH_SOUND = true; // بدّلها false باش تطفّي الصوت
-  var audioCtx = null, lastSound = 0;
+  var audioCtx = null, lastSound = 0, soundToggle = 0;
   function playDrop() {
     if (!ENABLE_TOUCH_SOUND) return;
     var now = Date.now();
-    if (now - lastSound < 350) return; // throttle: ما يتكررش بسرعة
+    if (now - lastSound < 300) return; // throttle: ما يتكررش بسرعة
     lastSound = now;
     try {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       if (audioCtx.state === 'suspended') audioCtx.resume();
       var t = audioCtx.currentTime;
+      // نسختين: خفيفة (عالية) / عميقة (منخفضة) + عشوائية باش كل لمسة مختلفة
+      soundToggle = 1 - soundToggle;
+      var base = (soundToggle ? 480 : 320) + (Math.random() * 90 - 45);
+      var peak = base * (2.3 + Math.random() * 0.9);
+      var dur = 0.26 + Math.random() * 0.12;
       var osc = audioCtx.createOscillator();
+      var filter = audioCtx.createBiquadFilter();
       var gain = audioCtx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(620, t);
-      osc.frequency.exponentialRampToValueAtTime(900, t + 0.07);
+      osc.frequency.setValueAtTime(base, t);
+      osc.frequency.exponentialRampToValueAtTime(peak, t + 0.06 + Math.random() * 0.03);
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(Math.min(peak * 2, 6000), t);
+      filter.Q.value = 7 + Math.random() * 4; // رنين كيعطي إحساس مائي
       gain.gain.setValueAtTime(0.0001, t);
-      gain.gain.exponentialRampToValueAtTime(0.10, t + 0.012); // صوت خفيف
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.3); // تلاشي سريع
-      osc.connect(gain); gain.connect(audioCtx.destination);
-      osc.start(t); osc.stop(t + 0.32);
+      gain.gain.exponentialRampToValueAtTime(0.11, t + 0.008);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      osc.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
+      osc.start(t); osc.stop(t + dur + 0.02);
     } catch (e) {}
   }
   if (!reduceMotion) {
