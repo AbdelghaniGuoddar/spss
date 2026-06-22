@@ -241,6 +241,9 @@ img { max-width: 100%; display: block; }
 .ho-price strong { font-family: 'Rubik'; font-weight: 900; font-size: 1.55rem; color: var(--blue-700); }
 [data-theme="dark"] .ho-price strong { color: var(--blue-400); }
 .ho-tag { background: var(--accent); color: #04342d; font-weight: 800; font-size: .8rem; padding: 4px 12px; border-radius: 50px; }
+.ho-btn { display: flex; width: 100%; justify-content: center; align-items: center; gap: 8px; margin-top: 16px; }
+.ho-btn svg { transition: transform .25s ease; }
+.ho-btn:hover svg { transform: translateY(3px); }
 
 /* Hero card */
 .hero-card { background: var(--surface); border-radius: 22px; box-shadow: var(--shadow-lg); padding: 16px; border: 1px solid var(--line); }
