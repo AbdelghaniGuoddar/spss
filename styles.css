@@ -86,6 +86,7 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
+html { overflow-x: hidden; }
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
 
 .grad {
@@ -188,12 +189,13 @@ img { max-width: 100%; display: block; }
   mask-image: radial-gradient(circle at 70% 30%, #000, transparent 70%);
 }
 .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+.hero-inner > * { min-width: 0; }
 
 .eyebrow {
   display: inline-block; background: var(--blue-100); color: var(--blue-700);
   font-weight: 700; font-size: .9rem; padding: 7px 16px; border-radius: 50px; margin-bottom: 20px;
 }
-.hero-title { font-size: clamp(2rem, 4.2vw, 3.25rem); font-weight: 900; color: var(--heading); letter-spacing: -.5px; }
+.hero-title { font-size: clamp(2rem, 4.2vw, 3.25rem); font-weight: 900; color: var(--heading); letter-spacing: -.5px; overflow-wrap: break-word; word-break: break-word; }
 .hero-sub { font-size: 1.15rem; color: var(--ink-soft); margin: 22px 0 30px; max-width: 600px; }
 .hero-sub strong { color: var(--blue-700); }
 
