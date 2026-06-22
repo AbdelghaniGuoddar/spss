@@ -435,7 +435,7 @@ img { max-width: 100%; display: block; }
 }
 .offer-ic svg { width: 22px; height: 22px; }
 /* countdown */
-.countdown { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.countdown { display: flex; flex-direction: row-reverse; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .cd-box { background: var(--surface); border: 1px solid #ffd98a; border-radius: 12px; padding: 9px 0; width: 72px; }
 .cd-box span { display: block; font-family: 'Rubik'; font-weight: 900; font-size: 1.7rem; color: #b54708; line-height: 1.1; }
 .cd-box small { color: var(--muted); font-size: .78rem; }
