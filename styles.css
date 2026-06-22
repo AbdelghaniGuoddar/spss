@@ -325,7 +325,7 @@ img { max-width: 100%; display: block; }
 .prog-step { font-family: 'Rubik'; font-weight: 900; font-size: 2.4rem; color: var(--blue-100); line-height: 1; }
 [data-theme="dark"] .prog-step { color: var(--blue-700); opacity: .5; }
 .prog-title-row { display: flex; align-items: center; gap: 13px; margin: 8px 0 10px; }
-.prog-img { width: 54px; height: 54px; object-fit: contain; border-radius: 12px; flex-shrink: 0; background: var(--blue-50); padding: 5px; border: 1px solid var(--line); }
+.prog-img { width: 56px; height: 56px; object-fit: contain; flex-shrink: 0; }
 .prog-card h3 { font-size: 1.28rem; color: var(--heading); margin: 0; }
 .prog-card p { color: var(--ink-soft); font-size: 1rem; }
 
