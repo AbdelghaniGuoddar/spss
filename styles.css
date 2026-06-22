@@ -408,6 +408,13 @@ img { max-width: 100%; display: block; }
 }
 .price-name { font-size: 1.35rem; color: var(--heading); min-height: 2.6em; }
 .price-desc { color: var(--ink-soft); font-size: .98rem; margin: 6px 0 18px; min-height: 3em; }
+.price-hint {
+  display: inline-flex; align-items: center; gap: 7px; margin: -8px 0 18px;
+  background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-100);
+  font-weight: 700; font-size: .85rem; padding: 7px 14px; border-radius: 50px;
+}
+.price-hint svg { width: 15px; height: 15px; flex-shrink: 0; color: #f59e0b; fill: #f59e0b; }
+[data-theme="dark"] .price-hint { color: var(--blue-400); }
 .price-amount { display: flex; align-items: baseline; gap: 8px; padding-bottom: 22px; margin-bottom: 22px; border-bottom: 1px dashed var(--line); }
 .price-amount .amount { font-family: 'Rubik'; font-weight: 900; font-size: 2.8rem; color: var(--blue-700); line-height: 1; }
 .price-amount .curr { color: var(--muted); font-weight: 700; }
