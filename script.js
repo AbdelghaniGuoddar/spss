@@ -315,4 +315,33 @@
     }
   }
 
+  /* ---- WhatsApp helper bubble (pops up after 5s) ---- */
+  var waBubble = document.getElementById('waBubble');
+  if (waBubble) {
+    var waBubbleClose = document.getElementById('waBubbleClose');
+    var bubbleDismissed = false;
+    try { bubbleDismissed = sessionStorage.getItem('waBubbleDismissed') === '1'; } catch (e) {}
+
+    var hideBubble = function () {
+      waBubble.classList.remove('show');
+      waBubble.setAttribute('aria-hidden', 'true');
+      try { sessionStorage.setItem('waBubbleDismissed', '1'); } catch (e) {}
+    };
+
+    if (!bubbleDismissed) {
+      setTimeout(function () {
+        waBubble.classList.add('show');
+        waBubble.setAttribute('aria-hidden', 'false');
+      }, 5000);
+    }
+
+    if (waBubbleClose) {
+      waBubbleClose.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation(); hideBubble();
+      });
+    }
+    var bubbleLink = waBubble.querySelector('.wa-bubble-link');
+    if (bubbleLink) bubbleLink.addEventListener('click', hideBubble);
+  }
+
 })();
