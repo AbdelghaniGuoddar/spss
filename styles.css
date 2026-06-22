@@ -583,10 +583,15 @@ img { max-width: 100%; display: block; }
 .founder-academic { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px; }
 .acad-link {
   display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft);
-  font-weight: 600; font-size: .85rem; border: 1.5px solid var(--line); padding: 7px 14px; border-radius: 50px; transition: var(--t); background: var(--surface);
+  font-weight: 700; font-size: .85rem; border: 1.5px solid var(--line); padding: 7px 14px; border-radius: 50px; transition: var(--t); background: var(--surface);
 }
-.acad-link svg { width: 15px; height: 15px; }
-.acad-link:hover { color: var(--blue-600); border-color: var(--blue-600); transform: translateY(-2px); }
+.acad-link svg { width: 16px; height: 16px; }
+.acad-link.scholar { color: #4285f4; }
+.acad-link.scholar:hover { background: #4285f4; color: #fff; border-color: #4285f4; transform: translateY(-2px); }
+.acad-link.scopus { color: #e9711c; }
+.acad-link.scopus:hover { background: #e9711c; color: #fff; border-color: #e9711c; transform: translateY(-2px); }
+.acad-link.orcid { color: #a6ce39; }
+.acad-link.orcid:hover { background: #a6ce39; color: #fff; border-color: #a6ce39; transform: translateY(-2px); }
 .founder-quote {
   font-size: 1.18rem; line-height: 1.95; color: var(--heading); font-style: italic;
   border-inline-start: 4px solid var(--blue-500); padding: 4px 20px 4px 22px; margin-bottom: 26px;
