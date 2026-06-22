@@ -268,4 +268,17 @@
     var cdTimer = setInterval(tick, 1000);
   }
 
+  /* ---- Touch / click glow ripple ---- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    document.addEventListener('pointerdown', function (e) {
+      var g = document.createElement('div');
+      g.className = 'touch-glow';
+      g.style.left = e.clientX + 'px';
+      g.style.top = e.clientY + 'px';
+      document.body.appendChild(g);
+      setTimeout(function () { g.remove(); }, 950);
+    }, { passive: true });
+  }
+
 })();
