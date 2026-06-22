@@ -281,4 +281,38 @@
     }, { passive: true });
   }
 
+  /* ---- Stats count-up ---- */
+  var statNums = document.querySelectorAll('.stat-num[data-count]');
+  if (statNums.length) {
+    var runCount = function (el) {
+      var target = parseFloat(el.getAttribute('data-count')) || 0;
+      var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      var prefix = el.getAttribute('data-prefix') || '';
+      var suffix = el.getAttribute('data-suffix') || '';
+      var dur = 1400, start = null;
+      var fmt = function (v) {
+        return prefix + v.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+      };
+      var animate = function (ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(target * eased);
+        if (p < 1) requestAnimationFrame(animate);
+        else el.textContent = fmt(target);
+      };
+      requestAnimationFrame(animate);
+    };
+    if ('IntersectionObserver' in window) {
+      var statIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { runCount(entry.target); statIO.unobserve(entry.target); }
+        });
+      }, { threshold: 0.4 });
+      statNums.forEach(function (el) { statIO.observe(el); });
+    } else {
+      statNums.forEach(runCount);
+    }
+  }
+
 })();
