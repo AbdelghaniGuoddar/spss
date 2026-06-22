@@ -572,6 +572,14 @@ img { max-width: 100%; display: block; }
 }
 .founder-linkedin:hover { background: #0a66c2; color: #fff; border-color: #0a66c2; transform: translateY(-2px); }
 .founder-linkedin svg { width: 18px; height: 18px; }
+.founder-academic-label { display: block; margin-top: 18px; font-size: .78rem; font-weight: 700; color: var(--ink-soft); letter-spacing: .02em; }
+.founder-academic { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px; }
+.acad-link {
+  display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft);
+  font-weight: 600; font-size: .85rem; border: 1.5px solid var(--line); padding: 7px 14px; border-radius: 50px; transition: var(--t); background: var(--surface);
+}
+.acad-link svg { width: 15px; height: 15px; }
+.acad-link:hover { color: var(--blue-600); border-color: var(--blue-600); transform: translateY(-2px); }
 .founder-quote {
   font-size: 1.15rem; line-height: 1.9; color: var(--ink-soft);
   border-inline-start: 4px solid var(--blue-500); padding-inline-start: 20px; margin-bottom: 26px;
