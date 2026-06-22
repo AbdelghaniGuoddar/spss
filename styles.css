@@ -581,9 +581,11 @@ img { max-width: 100%; display: block; }
 .acad-link svg { width: 15px; height: 15px; }
 .acad-link:hover { color: var(--blue-600); border-color: var(--blue-600); transform: translateY(-2px); }
 .founder-quote {
-  font-size: 1.15rem; line-height: 1.9; color: var(--ink-soft);
-  border-inline-start: 4px solid var(--blue-500); padding-inline-start: 20px; margin-bottom: 26px;
+  font-size: 1.18rem; line-height: 1.95; color: var(--heading); font-style: italic;
+  border-inline-start: 4px solid var(--blue-500); padding: 4px 20px 4px 22px; margin-bottom: 26px;
+  position: relative;
 }
+.founder-quote strong { font-style: normal; color: var(--blue-600); }
 .founder-quote strong { color: var(--blue-700); }
 [data-theme="dark"] .founder-quote strong { color: var(--blue-400); }
 .about-points { display: grid; gap: 18px; }
