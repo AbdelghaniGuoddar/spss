@@ -205,7 +205,34 @@ img { max-width: 100%; display: block; }
 .hero-badges strong { color: var(--blue-700); }
 
 /* hero quick-offer box */
-.hero-offer { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); max-width: 560px; }
+.hero-offer { position: relative; overflow: hidden; margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); max-width: 560px; }
+.hero-offer > * { position: relative; z-index: 1; }
+.hero-offer::before {
+  content: ''; position: absolute; z-index: 0; top: -50px; inset-inline-start: -50px;
+  width: 230px; height: 230px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(61,151,232,.55), rgba(61,151,232,0) 70%);
+  filter: blur(22px); animation: hoGlowA 15s ease-in-out infinite alternate;
+}
+.hero-offer::after {
+  content: ''; position: absolute; z-index: 0; bottom: -60px; inset-inline-end: -40px;
+  width: 190px; height: 190px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(0,194,168,.42), rgba(0,194,168,0) 70%);
+  filter: blur(24px); animation: hoGlowB 19s ease-in-out infinite alternate;
+}
+@keyframes hoGlowA {
+  0%   { transform: translate(0, 0) scale(1); }
+  35%  { transform: translate(190px, 35px) scale(1.18); }
+  70%  { transform: translate(70px, 120px) scale(.92); }
+  100% { transform: translate(210px, 95px) scale(1.1); }
+}
+@keyframes hoGlowB {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-150px, -45px) scale(1.22); }
+  100% { transform: translate(-50px, -120px) scale(.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-offer::before, .hero-offer::after { animation: none; }
+}
 .ho-title { display: block; font-weight: 800; color: var(--heading); margin-bottom: 14px; font-size: 1.05rem; }
 .ho-list { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 20px; margin-bottom: 16px; }
 .ho-list li { display: flex; gap: 8px; align-items: flex-start; color: var(--ink-soft); font-size: .98rem; }
