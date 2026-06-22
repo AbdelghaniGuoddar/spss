@@ -315,12 +315,43 @@
     }
   }
 
-  /* ---- WhatsApp helper bubble (pops up after 5s) ---- */
+  /* ---- WhatsApp helper bubble (pops up after 10s + notification sound) ---- */
   var waBubble = document.getElementById('waBubble');
   if (waBubble) {
     var waBubbleClose = document.getElementById('waBubbleClose');
     var bubbleDismissed = false;
     try { bubbleDismissed = sessionStorage.getItem('waBubbleDismissed') === '1'; } catch (e) {}
+
+    // --- audio: unlock on first user gesture (browser autoplay policy) ---
+    var audioCtx = null;
+    var ensureAudio = function () {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      } catch (e) { audioCtx = null; }
+    };
+    ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (ev) {
+      window.addEventListener(ev, ensureAudio, { once: true, passive: true });
+    });
+    var playNotif = function () {
+      if (!audioCtx || audioCtx.state !== 'running') return;
+      try {
+        var now = audioCtx.currentTime;
+        [{ f: 880, t: 0 }, { f: 1318.5, t: 0.12 }].forEach(function (n) {
+          var osc = audioCtx.createOscillator();
+          var gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = n.f;
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          var s = now + n.t;
+          gain.gain.setValueAtTime(0.0001, s);
+          gain.gain.exponentialRampToValueAtTime(0.16, s + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, s + 0.33);
+          osc.start(s);
+          osc.stop(s + 0.38);
+        });
+      } catch (e) {}
+    };
 
     var hideBubble = function () {
       waBubble.classList.remove('show');
@@ -332,7 +363,9 @@
       setTimeout(function () {
         waBubble.classList.add('show');
         waBubble.setAttribute('aria-hidden', 'false');
-      }, 5000);
+        ensureAudio();
+        playNotif();
+      }, 10000);
     }
 
     if (waBubbleClose) {
