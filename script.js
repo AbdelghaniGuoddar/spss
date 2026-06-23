@@ -377,4 +377,13 @@
     if (bubbleLink) bubbleLink.addEventListener('click', hideBubble);
   }
 
+  /* ---- Track program PDF downloads (Pixel) ---- */
+  document.querySelectorAll('.price-pdf').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.fbq === 'function') {
+        window.fbq('trackCustom', 'DownloadProgram', { content_name: a.getAttribute('data-offer') || '' });
+      }
+    });
+  });
+
 })();
