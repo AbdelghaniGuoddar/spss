@@ -81,6 +81,18 @@
     });
   }
 
+  /* ---- Live-sync with OS theme (only when user hasn't manually chosen) ---- */
+  if (window.matchMedia) {
+    var schemeMq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onSchemeChange = function (e) {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (err) {}
+      if (!saved) document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    };
+    if (schemeMq.addEventListener) schemeMq.addEventListener('change', onSchemeChange);
+    else if (schemeMq.addListener) schemeMq.addListener(onSchemeChange);
+  }
+
   /* ---- Lead form -> WhatsApp ---- */
   var leadForm = document.getElementById('leadForm');
   if (leadForm) {
