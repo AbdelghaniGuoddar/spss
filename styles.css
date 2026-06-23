@@ -399,6 +399,15 @@ html { overflow-x: hidden; }
 /* ============ PRICING ============ */
 .pricing { background: var(--bg-soft); }
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+
+/* mobile only: show pricing right under hero (laptop keeps original order) */
+.page-main { display: contents; }
+@media (max-width: 768px) {
+  .page-main { display: flex; flex-direction: column; }
+  .page-main > section { order: 3; }
+  .page-main > .hero { order: 1; }
+  .page-main > .pricing { order: 2; }
+}
 .price-card {
   position: relative; background: var(--surface); border: 1.5px solid var(--line); border-radius: 22px;
   padding: 36px 28px; display: flex; flex-direction: column; transition: var(--t);
