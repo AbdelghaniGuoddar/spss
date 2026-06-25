@@ -825,3 +825,32 @@ html { overflow-x: hidden; }
   .trust-grid { grid-template-columns: 1fr; }
   .trust-item + .trust-item { border: 0; }
 }
+
+
+/* ============ Q&A feature highlight ============ */
+.qa-hl { color: var(--accent); font-weight: 800; }
+[data-theme="dark"] .qa-hl { color: #25e0c4; }
+.why-text .qa-hl, .why-list .qa-hl { color: #2fe6cd; }
+.trust-item .qa-hl { color: #2fe6cd; }
+
+/* ============ Founder quote citation ============ */
+.founder-quote-cite {
+  display: block; margin-top: 14px; font-style: normal; font-weight: 700;
+  font-size: .98rem; color: var(--blue-700); text-align: start;
+}
+[data-theme="dark"] .founder-quote-cite { color: var(--blue-400); }
+
+/* ============ Wide Q&A card (why section) ============ */
+.mini-card-wide {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 16px;
+  text-align: right; padding: 18px 22px;
+}
+.qa-card { border-color: rgba(0,194,168,.55); background: rgba(0,194,168,.12); }
+.mc-icon {
+  display: grid; place-items: center; width: 46px; height: 46px; flex: none;
+  border-radius: 12px; background: rgba(0,194,168,.22); color: #2fe6cd;
+}
+.mc-icon svg { width: 26px; height: 26px; }
+.mc-wide-text { display: flex; flex-direction: column; gap: 3px; }
+.mc-wide-text strong { color: #fff; font-size: 1.12rem; font-family: 'Rubik'; }
+.mc-wide-text small { color: #bcd6f2; font-size: .92rem; }
