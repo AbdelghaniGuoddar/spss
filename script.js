@@ -441,4 +441,17 @@
     }
   })();
 
+  /* ---- Mobile: collapse pricing feature lists into a toggle (open on desktop) ---- */
+  (function () {
+    var details = document.querySelectorAll('.price-details');
+    if (!details.length || !window.matchMedia) return;
+    var mq = window.matchMedia('(max-width: 768px)');
+    function apply() {
+      details.forEach(function (d) { d.open = !mq.matches; });
+    }
+    apply();
+    if (mq.addEventListener) mq.addEventListener('change', apply);
+    else if (mq.addListener) mq.addListener(apply);
+  })();
+
 })();
