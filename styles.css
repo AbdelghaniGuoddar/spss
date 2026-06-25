@@ -927,3 +927,8 @@ html { overflow-x: hidden; }
   .cmp-lose { order: 1; }
   .cmp-win { order: 2; }
 }
+
+
+/* ============ Problem → outcome transition heading ============ */
+.po-head { text-align: center; margin: 44px 0 22px; }
+.po-head h3 { font-size: clamp(1.25rem, 2.5vw, 1.7rem); color: var(--heading); }
