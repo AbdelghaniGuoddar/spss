@@ -795,6 +795,13 @@ html { overflow-x: hidden; }
   }
   .pricing-grid::-webkit-scrollbar { height: 6px; }
   .pricing-grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 50px; }
+  .price-card { padding: 24px 20px; }
+  .price-name { min-height: 0; font-size: 1.16rem; }
+  .price-desc { min-height: 0; margin: 6px 0 14px; font-size: .9rem; }
+  .price-amount { padding-bottom: 16px; margin-bottom: 16px; }
+  .price-old { white-space: nowrap; }
+  .price-feats { gap: 9px; margin-bottom: 18px; }
+  .price-feats li { font-size: .94rem; }
   .ba-grid { grid-template-columns: 1fr; gap: 14px; }
   .ba-arrow { transform: rotate(-90deg); }
   .price-card.featured { transform: none; }
