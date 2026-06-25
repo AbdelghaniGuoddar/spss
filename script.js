@@ -398,4 +398,47 @@
     });
   });
 
+  /* ---- Scroll-depth + key-section tracking (find where visitors drop off) ---- */
+  (function () {
+    function fire(name, params) {
+      if (typeof window.fbq === 'function') window.fbq('trackCustom', name, params || {});
+    }
+
+    /* Scroll depth: 25 / 50 / 75 / 90 % — each fired once */
+    var marks = [25, 50, 75, 90], hit = {};
+    function onDepth() {
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      var pct = (window.scrollY / scrollable) * 100;
+      for (var i = 0; i < marks.length; i++) {
+        if (pct >= marks[i] && !hit[marks[i]]) {
+          hit[marks[i]] = true;
+          fire('ScrollDepth', { percent: marks[i] });
+        }
+      }
+      if (Object.keys(hit).length === marks.length) {
+        window.removeEventListener('scroll', onDepth);
+      }
+    }
+    window.addEventListener('scroll', onDepth, { passive: true });
+    onDepth();
+
+    /* Key funnel sections actually reached — each fired once */
+    if ('IntersectionObserver' in window) {
+      var ids = ['comparison', 'testimonials', 'faq', 'register'];
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            fire('ViewSection', { section: en.target.id });
+            obs.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.35 });
+      ids.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) obs.observe(el);
+      });
+    }
+  })();
+
 })();
