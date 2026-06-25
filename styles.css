@@ -854,32 +854,35 @@ html { overflow-x: hidden; }
 .mc-wide-text small { color: #bcd6f2; font-size: .92rem; }
 
 
-/* ============ Comparison section ============ */
-.comparison { background: var(--bg-soft); }
+/* ============ Comparison section (glass) ============ */
+.comparison { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--blue-50), var(--blue-100)); }
+.comparison::before { content: ''; position: absolute; top: -110px; inset-inline-start: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(0,194,168,.22), transparent 70%); z-index: 0; }
+.comparison::after { content: ''; position: absolute; bottom: -130px; inset-inline-end: -100px; width: 440px; height: 440px; border-radius: 50%; background: radial-gradient(circle, rgba(21,101,192,.20), transparent 70%); z-index: 0; }
+.comparison .container { position: relative; z-index: 1; }
 .cmp-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
   max-width: 1000px; margin: 0 auto; align-items: start;
 }
 .cmp-col {
-  background: var(--surface); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 26px 24px; box-shadow: var(--shadow);
+  background: rgba(255,255,255,.55);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 22px; overflow: hidden; padding: 0;
+  box-shadow: 0 14px 44px rgba(13,58,102,.14);
+  transition: transform .25s ease, box-shadow .25s ease;
 }
-.cmp-win {
-  border: 2px solid var(--accent);
-  box-shadow: 0 16px 40px rgba(0,194,168,.18);
-}
-.cmp-lose { background: var(--bg-soft); }
-.cmp-col-head {
-  text-align: center; padding-bottom: 16px; margin-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-.cmp-col-head h3 { font-size: 1.18rem; color: var(--heading); }
+.cmp-col:hover { transform: translateY(-5px); box-shadow: 0 22px 56px rgba(13,58,102,.2); }
+.cmp-win { border: 1.5px solid rgba(0,194,168,.6); box-shadow: 0 18px 50px rgba(0,194,168,.22); }
+.cmp-col-head { text-align: center; padding: 24px 20px 20px; color: #fff; background: linear-gradient(150deg, #2b7fd0, #114a85); }
+.cmp-win .cmp-col-head { background: linear-gradient(150deg, #00c2a8, #1565c0); }
+.cmp-col-head h3 { font-size: 1.2rem; color: #fff; }
 .cmp-badge {
-  display: inline-block; background: var(--accent); color: #04342d;
+  display: inline-block; background: rgba(255,255,255,.92); color: #04342d;
   font-weight: 800; font-size: .78rem; padding: 4px 14px;
   border-radius: 50px; margin-bottom: 10px;
 }
-.cmp-list { display: grid; gap: 14px; }
+.cmp-list { display: grid; gap: 14px; padding: 22px; margin: 0; }
 .cmp-list li {
   display: flex; gap: 11px; align-items: flex-start;
   font-size: 1rem; line-height: 1.6; color: var(--ink-soft);
@@ -891,14 +894,18 @@ html { overflow-x: hidden; }
   display: grid; place-items: center; font-size: .8rem; font-weight: 800;
   margin-top: 2px;
 }
-.cmp-ic.ok { background: rgba(0,194,168,.16); color: var(--accent-d); }
-.cmp-ic.no { background: rgba(214,64,69,.14); color: #d64045; }
-.cmp-ic.warn { background: rgba(214,150,10,.18); color: #c98a06; }
+.cmp-ic.ok { background: rgba(0,194,168,.18); color: var(--accent-d); }
+.cmp-ic.no { background: rgba(214,64,69,.16); color: #d64045; }
+.cmp-ic.warn { background: rgba(214,150,10,.2); color: #c98a06; }
 .cmp-closing {
-  text-align: center; max-width: 720px; margin: 36px auto 0;
+  text-align: center; max-width: 720px; margin: 38px auto 0;
   font-size: 1.12rem; line-height: 1.8; color: var(--ink-soft);
 }
 .cmp-closing strong { color: var(--heading); display: block; margin-top: 6px; }
+.cmp-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 24px; }
+[data-theme="dark"] .comparison { background: linear-gradient(160deg, #0b1626, #11243a); }
+[data-theme="dark"] .cmp-col { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); box-shadow: 0 14px 44px rgba(0,0,0,.4); }
+[data-theme="dark"] .cmp-win { border-color: rgba(0,194,168,.6); }
 [data-theme="dark"] .cmp-ic.no { color: #ff7a7e; }
 [data-theme="dark"] .cmp-ic.warn { color: #f0b73a; }
 @media (max-width: 768px) {
