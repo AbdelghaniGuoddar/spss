@@ -784,7 +784,17 @@ html { overflow-x: hidden; }
   .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
   .carousel-nav.prev { inset-inline-start: 2px; }
   .carousel-nav.next { inset-inline-end: 2px; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  .pricing-grid {
+    display: flex; grid-template-columns: none; gap: 16px;
+    max-width: none; margin: 0 -22px; padding: 4px 22px 18px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pricing-grid > .price-card {
+    flex: 0 0 84%; max-width: 330px; scroll-snap-align: center;
+  }
+  .pricing-grid::-webkit-scrollbar { height: 6px; }
+  .pricing-grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 50px; }
   .ba-grid { grid-template-columns: 1fr; gap: 14px; }
   .ba-arrow { transform: rotate(-90deg); }
   .price-card.featured { transform: none; }
