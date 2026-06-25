@@ -441,17 +441,56 @@
     }
   })();
 
-  /* ---- Mobile: collapse pricing feature lists into a toggle (open on desktop) ---- */
+  /* ---- Mobile: smooth collapsible pricing feature lists (open on desktop) ---- */
   (function () {
     var details = document.querySelectorAll('.price-details');
     if (!details.length || !window.matchMedia) return;
     var mq = window.matchMedia('(max-width: 768px)');
+
     function apply() {
       details.forEach(function (d) { d.open = !mq.matches; });
     }
     apply();
     if (mq.addEventListener) mq.addEventListener('change', apply);
     else if (mq.addListener) mq.addListener(apply);
+
+    details.forEach(function (d) {
+      var sum = d.querySelector('summary');
+      var wrap = d.querySelector('.price-feats-wrap');
+      if (!sum || !wrap) return;
+
+      sum.addEventListener('click', function (e) {
+        if (!mq.matches) return;             // desktop: features always shown
+        e.preventDefault();
+        if (wrap.dataset.animating) return;
+        wrap.dataset.animating = '1';
+
+        function onEnd(done) {
+          wrap.addEventListener('transitionend', function te(ev) {
+            if (ev.propertyName !== 'height') return;
+            wrap.removeEventListener('transitionend', te);
+            delete wrap.dataset.animating;
+            done();
+          });
+        }
+
+        if (d.open) {
+          wrap.style.height = wrap.scrollHeight + 'px';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { wrap.style.height = '0px'; });
+          });
+          onEnd(function () { d.open = false; wrap.style.height = ''; });
+        } else {
+          d.open = true;
+          var target = wrap.scrollHeight;
+          wrap.style.height = '0px';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { wrap.style.height = target + 'px'; });
+          });
+          onEnd(function () { wrap.style.height = ''; });
+        }
+      });
+    });
   })();
 
 })();
