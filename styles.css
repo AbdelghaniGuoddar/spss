@@ -815,7 +815,7 @@ html { overflow-x: hidden; }
   .cta-text, .lead-form { padding: 36px 26px; }
   .hero-cta .btn { width: 100%; }
   .ho-list { grid-template-columns: 1fr; }
-  .hero-offer { max-width: none; }
+  .hero-offer { display: none; }
   .offers-float { left: 14px; bottom: 18px; padding: 11px 16px; font-size: .9rem; }
 }
 
