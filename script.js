@@ -534,7 +534,8 @@
         el: el, w: w, h: h,
         x: rand(0, Math.max(1, W - w)), y: rand(0, Math.max(1, H - h)),
         vx: rand(-0.35, 0.35) || 0.2, vy: rand(-0.35, 0.35) || 0.2,
-        ox: 0, oy: 0
+        ox: 0, oy: 0,
+        rot: rand(0, 360), va: rand(-0.22, 0.22)
       });
     }
 
@@ -542,10 +543,10 @@
     var pointer = { x: -9999, y: -9999, active: false };
     var tilt = { ax: 0, ay: 0 };
     var scrollKick = 0, lastScroll = window.pageYOffset;
-    var REPEL_R = 130, REPEL_F = 0.9;
+    var REPEL_R = 120, REPEL_F = 0.42;
 
     function place(it) {
-      it.el.style.transform = 'translate3d(' + (it.x + it.ox) + 'px,' + (it.y + it.oy) + 'px,0)';
+      it.el.style.transform = 'translate3d(' + (it.x + it.ox) + 'px,' + (it.y + it.oy) + 'px,0) rotate(' + it.rot + 'deg)';
     }
 
     if (reduced) {
@@ -565,10 +566,11 @@
         if (Math.abs(it.vx) < 0.05) it.vx += (Math.random() - 0.5) * 0.05;
         if (Math.abs(it.vy) < 0.05) it.vy += (Math.random() - 0.5) * 0.05;
         // clamp speed
-        var sp = Math.hypot(it.vx, it.vy), MAX = 1.7;
+        var sp = Math.hypot(it.vx, it.vy), MAX = 1.5;
         if (sp > MAX) { it.vx = it.vx / sp * MAX; it.vy = it.vy / sp * MAX; }
 
         it.x += it.vx; it.y += it.vy;
+        it.rot += it.va;
 
         // bounce off section edges (roam everywhere)
         if (it.x < 0) { it.x = 0; it.vx = Math.abs(it.vx); }
@@ -588,8 +590,8 @@
           }
         }
         // smooth the offset
-        it.ox += (tox - it.ox) * 0.12;
-        it.oy += (toy - it.oy) * 0.12;
+        it.ox += (tox - it.ox) * 0.06;
+        it.oy += (toy - it.oy) * 0.06;
 
         place(it);
       }
