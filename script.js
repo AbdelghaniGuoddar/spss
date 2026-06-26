@@ -493,4 +493,163 @@
     });
   })();
 
+  /* ---- Hero: interactive floating SPSS/stats elements ---- */
+  (function () {
+    var layer = document.getElementById('heroFloat');
+    var hero = document.getElementById('hero');
+    if (!layer || !hero) return;
+
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isTouch = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+
+    var TERMS = [
+      { t: 'SPSS', c: 'hf-b', s: 2.3 }, { t: 'IA', c: 'hf-t', s: 2.0 },
+      { t: '\u03C7\u00B2', c: 'hf-t', s: 1.6 }, { t: 't-test', c: 'hf-b', s: 1.35 },
+      { t: 'p < 0.05', c: 'hf-t', s: 1.5 }, { t: 'ANOVA', c: 'hf-b', s: 1.35 },
+      { t: 'R\u00B2', c: 'hf-t', s: 1.7 }, { t: '\u03A3', c: 'hf-b', s: 2.1 },
+      { t: 'r\u00E9gression', c: 'hf-b', s: 1.2 }, { t: 'Alpha de Cronbach', c: 'hf-t', s: 1.1 },
+      { t: 'corr\u00E9lation', c: 'hf-b', s: 1.25 }, { t: '\u03C3', c: 'hf-t', s: 1.9 },
+      { t: 'Q&A', c: 'hf-b', s: 1.45 }, { t: 'm\u00E9diane', c: 'hf-t', s: 1.15 },
+      { t: '\u00B5', c: 'hf-b', s: 1.8 }, { t: 'histogramme', c: 'hf-t', s: 1.1 },
+      { t: 'hypoth\u00E8se', c: 'hf-b', s: 1.2 }, { t: '\u0251 = .87', c: 'hf-t', s: 1.3 },
+      { t: 'questionnaire', c: 'hf-b', s: 1.1 }, { t: 'F-test', c: 'hf-t', s: 1.3 },
+      { t: '\u00E9cart-type', c: 'hf-b', s: 1.15 }, { t: 'n = 384', c: 'hf-t', s: 1.4 },
+      { t: 'fiabilit\u00E9', c: 'hf-b', s: 1.15 }, { t: 'p-value', c: 'hf-t', s: 1.35 }
+    ];
+
+    var count = isTouch ? 13 : TERMS.length;
+    var W = hero.clientWidth, H = hero.clientHeight;
+    var items = [];
+    var rand = function (a, b) { return a + Math.random() * (b - a); };
+
+    for (var i = 0; i < count; i++) {
+      var spec = TERMS[i % TERMS.length];
+      var el = document.createElement('span');
+      el.className = 'hf ' + spec.c;
+      el.textContent = spec.t;
+      el.style.fontSize = spec.s + 'rem';
+      layer.appendChild(el);
+      var w = el.offsetWidth, h = el.offsetHeight;
+      items.push({
+        el: el, w: w, h: h,
+        x: rand(0, Math.max(1, W - w)), y: rand(0, Math.max(1, H - h)),
+        vx: rand(-0.35, 0.35) || 0.2, vy: rand(-0.35, 0.35) || 0.2,
+        ox: 0, oy: 0
+      });
+    }
+
+    // pointer / tilt / scroll state
+    var pointer = { x: -9999, y: -9999, active: false };
+    var tilt = { ax: 0, ay: 0 };
+    var scrollKick = 0, lastScroll = window.pageYOffset;
+    var REPEL_R = 130, REPEL_F = 0.9;
+
+    function place(it) {
+      it.el.style.transform = 'translate3d(' + (it.x + it.ox) + 'px,' + (it.y + it.oy) + 'px,0)';
+    }
+
+    if (reduced) {
+      // static, no motion
+      items.forEach(place);
+      return;
+    }
+
+    function tick() {
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        // drift + tilt acceleration
+        it.vx += tilt.ax;
+        it.vy += tilt.ay + scrollKick;
+        // gentle damping + keep a minimum life
+        it.vx *= 0.992; it.vy *= 0.992;
+        if (Math.abs(it.vx) < 0.05) it.vx += (Math.random() - 0.5) * 0.05;
+        if (Math.abs(it.vy) < 0.05) it.vy += (Math.random() - 0.5) * 0.05;
+        // clamp speed
+        var sp = Math.hypot(it.vx, it.vy), MAX = 1.7;
+        if (sp > MAX) { it.vx = it.vx / sp * MAX; it.vy = it.vy / sp * MAX; }
+
+        it.x += it.vx; it.y += it.vy;
+
+        // bounce off section edges (roam everywhere)
+        if (it.x < 0) { it.x = 0; it.vx = Math.abs(it.vx); }
+        else if (it.x > W - it.w) { it.x = W - it.w; it.vx = -Math.abs(it.vx); }
+        if (it.y < 0) { it.y = 0; it.vy = Math.abs(it.vy); }
+        else if (it.y > H - it.h) { it.y = H - it.h; it.vy = -Math.abs(it.vy); }
+
+        // mouse repel (desktop)
+        var tox = 0, toy = 0;
+        if (pointer.active) {
+          var cx = it.x + it.w / 2, cy = it.y + it.h / 2;
+          var dx = cx - pointer.x, dy = cy - pointer.y;
+          var dist = Math.hypot(dx, dy);
+          if (dist < REPEL_R && dist > 0.01) {
+            var force = (1 - dist / REPEL_R) * REPEL_R * REPEL_F;
+            tox = (dx / dist) * force; toy = (dy / dist) * force;
+          }
+        }
+        // smooth the offset
+        it.ox += (tox - it.ox) * 0.12;
+        it.oy += (toy - it.oy) * 0.12;
+
+        place(it);
+      }
+      scrollKick *= 0.9;
+      if (Math.abs(scrollKick) < 0.002) scrollKick = 0;
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // ----- desktop: mouse interaction -----
+    if (!isTouch) {
+      hero.addEventListener('mousemove', function (e) {
+        var r = hero.getBoundingClientRect();
+        pointer.x = e.clientX - r.left;
+        pointer.y = e.clientY - r.top;
+        pointer.active = true;
+      });
+      hero.addEventListener('mouseleave', function () { pointer.active = false; });
+    }
+
+    // ----- scroll interaction (stirs the elements) -----
+    window.addEventListener('scroll', function () {
+      var y = window.pageYOffset;
+      var d = y - lastScroll; lastScroll = y;
+      scrollKick += Math.max(-0.5, Math.min(0.5, d * 0.02));
+    }, { passive: true });
+
+    // ----- mobile: device tilt -----
+    function onTilt(e) {
+      var g = e.gamma || 0; // left-right [-90,90]
+      var b = e.beta || 0;  // front-back [-180,180]
+      tilt.ax = Math.max(-1, Math.min(1, g / 45)) * 0.06;
+      tilt.ay = Math.max(-1, Math.min(1, (b - 45) / 45)) * 0.06;
+    }
+    function enableTilt() {
+      window.addEventListener('deviceorientation', onTilt, true);
+    }
+    if (isTouch && window.DeviceOrientationEvent) {
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        // iOS 13+ needs a gesture-triggered permission request
+        var ask = function () {
+          DeviceOrientationEvent.requestPermission().then(function (state) {
+            if (state === 'granted') enableTilt();
+          }).catch(function () {});
+          window.removeEventListener('touchend', ask);
+        };
+        window.addEventListener('touchend', ask, { once: true });
+      } else {
+        enableTilt();
+      }
+    }
+
+    // ----- keep bounds on resize -----
+    window.addEventListener('resize', function () {
+      W = hero.clientWidth; H = hero.clientHeight;
+      items.forEach(function (it) {
+        if (it.x > W - it.w) it.x = Math.max(0, W - it.w);
+        if (it.y > H - it.h) it.y = Math.max(0, H - it.h);
+      });
+    });
+  })();
+
 })();

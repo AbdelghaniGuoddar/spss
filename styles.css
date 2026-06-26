@@ -1000,43 +1000,18 @@ html { overflow-x: hidden; }
 }
 
 
-/* ============ Hero floating SPSS / stats layer ============ */
+/* ============ Hero floating SPSS / stats layer (interactive) ============ */
 .hero-float { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .hf {
-  position: absolute; font-family: 'Rubik', system-ui, sans-serif; font-weight: 800;
-  white-space: nowrap; opacity: .13; letter-spacing: .5px;
-  animation: hfFloat 15s ease-in-out infinite; will-change: transform;
+  position: absolute; top: 0; left: 0; font-family: 'Rubik', system-ui, sans-serif; font-weight: 800;
+  white-space: nowrap; opacity: .15; letter-spacing: .5px; will-change: transform;
 }
 .hf-b { color: #2b7fd0; }
 .hf-t { color: #00b89e; }
-[data-theme="dark"] .hf { opacity: .16; }
+[data-theme="dark"] .hf { opacity: .19; }
 [data-theme="dark"] .hf-b { color: #5aa6ee; }
 [data-theme="dark"] .hf-t { color: #2fe0c8; }
-
-@keyframes hfFloat {
-  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
-  50% { transform: translateY(-22px) rotate(var(--r, 0deg)); }
-}
-
-.f1  { top: 13%; left: 5%;  font-size: 2.3rem; --r: -8deg; animation-duration: 15s; }
-.f2  { top: 27%; left: 38%; font-size: 1.5rem; animation-duration: 12s; animation-delay: -3s; }
-.f3  { top: 70%; left: 9%;  font-size: 1.35rem; --r: 5deg; animation-duration: 16s; animation-delay: -6s; }
-.f4  { top: 83%; left: 42%; font-size: 1.55rem; animation-duration: 13s; animation-delay: -2s; }
-.f5  { top: 8%;  left: 58%; font-size: 1.9rem; --r: 6deg; animation-duration: 14s; animation-delay: -5s; }
-.f6  { top: 42%; left: 2%;  font-size: 1.35rem; animation-duration: 17s; animation-delay: -8s; }
-.f7  { top: 56%; left: 49%; font-size: 1.7rem; --r: -6deg; animation-duration: 12s; animation-delay: -4s; }
-.f8  { top: 17%; left: 86%; font-size: 2.1rem; animation-duration: 15s; animation-delay: -7s; }
-.f9  { top: 88%; left: 78%; font-size: 1.25rem; animation-duration: 16s; animation-delay: -1s; }
-.f10 { top: 62%; left: 84%; font-size: 1.15rem; --r: 4deg; animation-duration: 14s; animation-delay: -9s; }
-.f11 { top: 35%; left: 68%; font-size: 1.3rem; animation-duration: 13s; animation-delay: -3.5s; }
-.f12 { top: 49%; left: 28%; font-size: 1.8rem; animation-duration: 18s; animation-delay: -6s; }
-.f13 { top: 5%;  left: 24%; font-size: 1.45rem; --r: -5deg; animation-duration: 15s; animation-delay: -2.5s; }
-
 @media (max-width: 768px) {
-  .hf { opacity: .1; }
-  [data-theme="dark"] .hf { opacity: .13; }
-  .f6, .f9, .f10, .f11, .f7 { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hf { animation: none; }
+  .hf { opacity: .12; }
+  [data-theme="dark"] .hf { opacity: .16; }
 }
